@@ -27,10 +27,27 @@ $anotherDto = new CustomDto(1);
 
 Here, `$dto` and `$anotherDto` are two different object instances; `$dto == $anotherDto` but `$dto !== $anotherDto`. This means:
 - Unnecessarily high overall memory usage for such simple DTOs if they are to be duplicated many times
+  - An example could be the result dataset of a database JOIN query
 - Impossible to use with e.g. `WeakMap`, which relies on the specific object instances
 
 The solution is simple: because DTOs very likely are `readonly` classes anyway, their object instances can be shared.
 This minimizes memory usage, along with e.g. enabling easy integration with the `WeakMap` datatype.
+
+This library allows you to conveniently manage duplicated DTOs by sharing their instances.
+You can then analyze your use case and apply this library where applicable.
+
+## Installation
+via Composer:
+
+```sh
+composer require vectorial1024/multiton-dto
+```
+
+## Usage
+(WIP)
+
+## Testing
+(WIP)
 
 [packagist-url]: https://packagist.org/packages/vectorial1024/multiton-dto
 [packagist-stats-url]: https://packagist.org/packages/vectorial1024/multiton-dto/stats
