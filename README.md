@@ -1,4 +1,4 @@
-# multiton_dto
+# multiton-dto
 [![Packagist License][packagist-license-image]][packagist-url]
 [![Packagist Version][packagist-version-image]][packagist-url]
 [![Packagist Downloads][packagist-downloads-image]][packagist-stats-url]
