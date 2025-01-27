@@ -1,5 +1,5 @@
 {
-    "name": "vectorial1024/multiton_dto",
+    "name": "vectorial1024/multiton-dto",
     "description": "Ergonomic PHP library for optimizing data transfer objects (DTOs).",
     "keywords": [
         "dto",
