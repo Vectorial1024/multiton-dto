@@ -12,10 +12,19 @@ trait MultitonDtoTrait {
      */
     private string|null $dtoID = null;
 
-    abstract function getDtoID();
+    /**
+     * Returns the ID of this DTO for internal use.
+     * @return string The ID of this DTO.
+     */
+    private function getDtoID(): string
+    {
+        return $this->dtoID ??= $this->provideDtoID();
+    }
 
     /**
      * Provides the ID of this DTO for multiton sharing and deduplication.
+     * 
+     * Note: we expect the ID to be `readonly`.
      * @return string The ID of this DTO.
      */
     abstract protected function provideDtoID(): string;
