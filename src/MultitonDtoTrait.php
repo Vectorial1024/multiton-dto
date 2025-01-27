@@ -7,20 +7,16 @@
  */
 trait MultitonDtoTrait {
     /**
-     * The primary value of this DTO. This identifies the DTO instance from other DTO instances.
-     * 
-     * Mental note: primary key <-> primary value
+     * The ID of this DTO. This identifies the DTO instance from other DTO instances.
      * @var string
      */
-    private string|null $primaryValue = null;
+    private string|null $dtoID = null;
 
-    abstract function getPrimaryValue();
+    abstract function getDtoID();
 
     /**
-     * Provides the value of this DTO for multiton sharing and deduplication.
-     * 
-     * Note: we expect this DTO to be `readonly`.
-     * @return string The value of this DTO.
+     * Provides the ID of this DTO for multiton sharing and deduplication.
+     * @return string The ID of this DTO.
      */
-    abstract protected function providePrimaryValue(): string;
+    abstract protected function provideDtoID(): string;
 }
