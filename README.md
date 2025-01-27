@@ -12,26 +12,26 @@ Ergonomic PHP library for optimizing data transfer objects (DTOs).
 Data transfer objects (DTOs) in PHP are very minimal classes that has the only objective of representing a piece of data for easy data transfer.
 In modern PHP, they can be classes with only `readonly` properties.
 
-DTOs are great, but when DTOs need to be (re)created many times in different places of the workflow, problems may arise. Consider:
+DTOs are great, but when `readonly` DTOs need to be (re)created many times, problems may arise. Consider:
 
 ```php
 // create instance for usage...
-$dto = new CustomDto(1);
+$dto = new ReadOnlyDto(1);
 
 // ...
 // somewhere else unrelated
-$anotherDto = new CustomDto(1);
+$anotherDto = new ReadOnlyDto(1);
 
 // ...
 ```
 
 Here, `$dto` and `$anotherDto` are two different object instances; `$dto == $anotherDto` but `$dto !== $anotherDto`. This means:
-- Unnecessarily high overall memory usage for such simple DTOs if they are to be duplicated many times
+- Unnecessarily high overall memory usage for such `readonly` DTOs, esp. when needing to duplicate them many times
   - An example could be the result dataset of a database JOIN query
 - Impossible to use with e.g. `WeakMap`, which relies on the specific object instances
 
-With this ergonomic library, DTO instances with the same content can be conveniently created, so that e.g. memory usage may be minimized.
-This is an example of the multiton pattern where multiple DTO instances are allowed to exist only if their underlying value is different.
+With this ergonomic library, same `readonly` DTO instances can be conveniently deduplicated, so that e.g. memory usage may be minimized.
+This is an example of the multiton pattern where multiple DTO instances are allowed to exist only if their identities are distinct.
 
 Note that this library is flexible: it will only activate when explicitly requested by the user.
 In case the DTOs will never duplicate (e.g. RESTful API returning a single instance to the caller),
