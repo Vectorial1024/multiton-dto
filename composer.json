@@ -17,5 +17,7 @@
             "name": "Vectorial1024"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^8.1"
+    }
 }
