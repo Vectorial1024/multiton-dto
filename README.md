@@ -8,6 +8,30 @@
 
 Ergonomic PHP library for optimizing data transfer objects (DTOs).
 
+## Situation / Why should I need this?
+Data transfer objects (DTOs) in PHP are very minimal classes that has the only objective of representing a piece of data for easy data transfer.
+In modern PHP, they can be classes with only `readonly` properties.
+
+DTOs are great, but when DTOs need to be (re)created many times in different places of the workflow, problems may arise. Consider:
+
+```php
+// create instance for usage...
+$dto = new CustomDto(1);
+
+// ...
+// somewhere else unrelated
+$anotherDto = new CustomDto(1);
+
+// ...
+```
+
+Here, `$dto` and `$anotherDto` are two different object instances; `$dto == $anotherDto` but `$dto !== $anotherDto`. This means:
+- Unnecessarily high overall memory usage for such simple DTOs, only because they are being repeated
+- Impossible to use with e.g. `WeakMap`, which relies on the specific object instances
+
+The solution is simple: because DTOs very likely are `readonly` classes anyway, their object instances can be shared.
+This minimizes memory usage, along with e.g. enabling easy integration with the `WeakMap` datatype.
+
 [packagist-url]: https://packagist.org/packages/vectorial1024/multiton-dto
 [packagist-stats-url]: https://packagist.org/packages/vectorial1024/multiton-dto/stats
 [github-repo-url]: https://github.com/Vectorial1024/multiton-dto
