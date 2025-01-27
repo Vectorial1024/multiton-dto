@@ -26,7 +26,7 @@ $anotherDto = new CustomDto(1);
 ```
 
 Here, `$dto` and `$anotherDto` are two different object instances; `$dto == $anotherDto` but `$dto !== $anotherDto`. This means:
-- Unnecessarily high overall memory usage for such simple DTOs, only because they are being repeated
+- Unnecessarily high overall memory usage for such simple DTOs if they are to be duplicated many times
 - Impossible to use with e.g. `WeakMap`, which relies on the specific object instances
 
 The solution is simple: because DTOs very likely are `readonly` classes anyway, their object instances can be shared.
