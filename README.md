@@ -30,11 +30,14 @@ Here, `$dto` and `$anotherDto` are two different object instances; `$dto == $ano
   - An example could be the result dataset of a database JOIN query
 - Impossible to use with e.g. `WeakMap`, which relies on the specific object instances
 
-The solution is simple: because DTOs very likely are `readonly` classes anyway, their object instances can be shared.
-This minimizes memory usage, along with e.g. enabling easy integration with the `WeakMap` datatype.
+With this ergonomic library, DTO instances with the same content can be conveniently created, so that e.g. memory usage may be minimized.
+This is an example of the multiton pattern where multiple DTO instances are allowed to exist only if their underlying value is different.
 
-This library allows you to ergonomically manage duplicated DTOs by sharing their instances.
-You can then analyze your use case and apply this library where applicable.
+Note that this library is flexible: it will only activate when explicitly requested by the user.
+In case the DTOs will never duplicate (e.g. RESTful API returning a single instance to the caller),
+simply don't invoke this library and this library will get out of the way.
+
+Consider this library as a loose analog of e.g. C#'s `struct` datatype.
 
 ## Installation
 via Composer:
