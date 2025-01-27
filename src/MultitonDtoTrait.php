@@ -61,4 +61,34 @@ trait MultitonDtoTrait {
         // previous instance still valid; return that
         return $theInstance;
     }
+
+    /**
+     * Performs a garbage collection on the multiton instance table to free up memory of GC-ed multiton instances.
+     * @return void
+     */
+    final public static function cleanMultitons(): void
+    {
+        // the way PHP arrays work, they will never shrink their sizes even if some of their keys are already unset
+        // this means we need a new PHP array to store the un-expired items
+        $newTable = [];
+        foreach (static::$multitonTable as $dtoValue => $existingRef) {
+            if ($existingRef->get() === null) {
+                // expired; do not include
+                continue;
+            }
+            // not expired; include in results
+            $newTable[$dtoValue] = $existingRef;
+        }
+        // all items checked; replace table
+        static::$multitonTable = $newTable;
+    }
+
+    /**
+     * Resets the multiton memory entirely. New DTO instances will no longer be deduplicated into the existing DTO instances.
+     * @return void
+     */
+    final public static function resetMultitons(): void
+    {
+        static::$multitonTable = [];
+    }
 }
