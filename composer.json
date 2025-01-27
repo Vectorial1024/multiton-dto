@@ -1,0 +1,21 @@
+{
+    "name": "vectorial1024/multiton_dto",
+    "description": "Ergonomic PHP library for optimizing data transfer objects (DTOs).",
+    "keywords": [
+        "dto",
+        "memory"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Vectorial1024\\MultitonDto\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vectorial1024"
+        }
+    ],
+    "require": {}
+}
