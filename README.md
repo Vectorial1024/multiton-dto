@@ -33,7 +33,7 @@ Here, `$dto` and `$anotherDto` are two different object instances; `$dto == $ano
 The solution is simple: because DTOs very likely are `readonly` classes anyway, their object instances can be shared.
 This minimizes memory usage, along with e.g. enabling easy integration with the `WeakMap` datatype.
 
-This library allows you to conveniently manage duplicated DTOs by sharing their instances.
+This library allows you to ergonomically manage duplicated DTOs by sharing their instances.
 You can then analyze your use case and apply this library where applicable.
 
 ## Installation
