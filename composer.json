@@ -12,6 +12,11 @@
             "Vectorial1024\\MultitonDto\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Vectorial1024\\MultitonDto\\Test\\": "test/"
+        }
+    },
     "authors": [
         {
             "name": "Vectorial1024"
@@ -19,5 +24,8 @@
     ],
     "require": {
         "php": "^8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0"
     }
 }
