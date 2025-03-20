@@ -108,7 +108,11 @@ Due to PHP technical limitations, if the parent class has chosen to use `Multito
 As such, when reading DTO instances inside child classes, sometimes explicit casts are needed.
 
 ## Testing
-(WIP)
+PHPUnit via Composer:
+
+```sh
+composer run-script test
+```
 
 [packagist-url]: https://packagist.org/packages/vectorial1024/multiton-dto
 [packagist-stats-url]: https://packagist.org/packages/vectorial1024/multiton-dto/stats
