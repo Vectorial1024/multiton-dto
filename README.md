@@ -45,7 +45,60 @@ composer require vectorial1024/multiton-dto
 ```
 
 ## Usage
-(WIP)
+First, make your DTO use the special trait from this library:
+
+```php
+use Vectorial1024\MultitonDto\MultitonDto;
+
+public class ReadOnlyDto
+{
+    // sample DTO class
+
+    use MultitonDtoTrait;
+
+    public function __construct(
+        public readonly int $theValue
+    ) {
+    }
+
+    protected function provideDtoID(): string
+    {
+        // abstract function from trait; let this library know how to identify your DTO instances
+        return (string) $this->theValue;
+    }
+}
+```
+
+Then, you have the convenient option to convert any created instance to the shared multiton DTO instance:
+
+```php
+// convert to shared DTO...
+$sharedInstance = (new ReadOnlyDto(1))->toMultiton();
+
+// ...or not at all; it's up to you. just double check your use case.
+$unsharedInstance = new ReadOnlyDto(3);
+
+// just that, when using this library, a useful behavior arises:
+$secondInstance = (new ReadOnlyDto(2))->toMultiton();
+assert($secondInstance === $sharedInstance);
+// passes
+assert($secondInstance !== $unsharedInstance);
+// passes
+```
+
+These shared instances are remembered via `WeakReference` variables, which unfortunately will still occupy a very small amount of memory even when everything is gone.
+
+For performance reasons, leftover DTO references are not automatically cleaned up. However, you may do this at an appropriate time during your program flow:
+
+```php
+// tell this library to remove only the leftover expired DTO records...
+ReadOnlyDto::cleanMultitons();
+
+// ...or go nuclear and unlink everything...
+ReadOnlyDto::resetMultitons();
+
+// ...or perhaps this cleanup is not needed; it's up to you.
+```
 
 ## Testing
 (WIP)
