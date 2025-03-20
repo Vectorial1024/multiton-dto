@@ -1,5 +1,7 @@
 <?php
 
+namespace Vectorial1024\MultitonDto;
+
 /**
  * The trait for Multiton DTOs to ergonomically deduplicate DTO instances.
  * 
