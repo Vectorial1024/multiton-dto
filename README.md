@@ -105,7 +105,7 @@ Due to PHP technical limitations, if the parent class has chosen to use `Multito
 - child classes cannot opt out of the trait; and
 - child classes must share their DTO instances with the parent class, and vice versa
 
-As such, when reading DTO instances inside child classes, sometimes an explicit casting is needed.
+As such, when reading DTO instances inside child classes, sometimes explicit casts are needed.
 
 ## Testing
 (WIP)

@@ -52,14 +52,14 @@ trait MultitonDtoTrait {
         $existingRef = static::$multitonTable[$dtoID] ?? null;
         if ($existingRef == null) {
             // first time appearing; remember it and return
-            static::$multitonTable[$dtoID] = WeakReference::create($this);
+            self::$multitonTable[$dtoID] = WeakReference::create($this);
             return $this;
         }
         // we have a previous reference; see if it is still valid
         $theInstance = $existingRef->get();
         if ($theInstance === null) {
             // previous instance expired; remember it and return
-            static::$multitonTable[$dtoID] = WeakReference::create($this);
+            self::$multitonTable[$dtoID] = WeakReference::create($this);
             return $this;
         }
         // previous instance still valid; return that
@@ -75,7 +75,7 @@ trait MultitonDtoTrait {
         // the way PHP arrays work, they will never shrink their sizes even if some of their keys are already unset
         // this means we need a new PHP array to store the un-expired items
         $newTable = [];
-        foreach (static::$multitonTable as $dtoValue => $existingRef) {
+        foreach (self::$multitonTable as $dtoValue => $existingRef) {
             if ($existingRef->get() === null) {
                 // expired; do not include
                 continue;
@@ -84,7 +84,7 @@ trait MultitonDtoTrait {
             $newTable[$dtoValue] = $existingRef;
         }
         // all items checked; replace table
-        static::$multitonTable = $newTable;
+        self::$multitonTable = $newTable;
     }
 
     /**
