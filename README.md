@@ -100,6 +100,13 @@ ReadOnlyDto::resetMultitons();
 // ...or perhaps this cleanup is not needed; it's up to you.
 ```
 
+## Notes on DTO Inheritance
+Due to PHP technical limitations, if the parent class has chosen to use `MultitonDtoTrait`, then:
+- child classes cannot opt out of the trait; and
+- child classes must share their DTO instances with the parent class, and vice versa
+
+As such, when reading DTO instances inside child classes, sometimes an explicit casting is needed.
+
 ## Testing
 (WIP)
 
