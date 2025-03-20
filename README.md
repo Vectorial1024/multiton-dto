@@ -37,8 +37,6 @@ Note that this library is flexible: it will only activate when explicitly reques
 In case the DTOs will never duplicate (e.g. RESTful API returning a single instance to the caller),
 simply don't invoke this library and this library will get out of the way.
 
-Consider this library as a loose analog of e.g. C#'s `struct` datatype.
-
 ## Installation
 via Composer:
 
