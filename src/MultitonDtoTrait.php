@@ -2,6 +2,8 @@
 
 namespace Vectorial1024\MultitonDto;
 
+use WeakReference;
+
 /**
  * The trait for Multiton DTOs to ergonomically deduplicate DTO instances.
  * 
